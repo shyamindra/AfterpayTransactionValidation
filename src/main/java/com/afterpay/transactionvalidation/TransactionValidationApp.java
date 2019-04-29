@@ -11,7 +11,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import com.afterpay.data.CSVDataHelper;
 import com.afterpay.validation.ValidationHelper;
 
-@SpringBootApplication
 public class TransactionValidationApp {
 
 	public static void main(String[] args) {
@@ -23,10 +22,10 @@ public class TransactionValidationApp {
 			csvDataHelper.writeListToFile( 
 					new ValidationHelper().validateAndGetFraudalentCards(
 							csvDataHelper.readTransactionData(
-								new File("src/main/resources/TransactionData.csv")), 20), 
-								new File("src/main/resources/FraudalentData.csv"));
+								new File(args[0])), new Double(args[1])), 
+								new File(args[2]));
 			logger.debug("Transactions from CSV:" + new CSVDataHelper().readTransactionData(
-					new File("src/main/resources/TransactionData.csv")));
+					new File("data/TransactionData.csv")));
 		} catch (NumberFormatException | FileNotFoundException | ParseException e) {
 			logger.error(e.getMessage());
 		}

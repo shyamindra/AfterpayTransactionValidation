@@ -20,20 +20,20 @@ public class CSVDataHelperTests {
 
 	@Test
 	public void testInputFileExists() {
-		File file = new File("src/main/resources/TransactionData.csv");
+		File file = new File("data/TransactionData.csv");
 		assertTrue(file.exists());
 	}
 	
 	@Test
 	public void testOutputFileCreation() throws FileNotFoundException {
-		File file = new File("src/main/resources/TestFraudalentData.csv");
+		File file = new File("data/TestFraudalentData.csv");
 		new CSVDataHelper().writeListToFile(Arrays.asList("testHashCreditCard"), file);
 		assertTrue(file.exists());
 	}
 	
 	@Test
 	public void testOutputFileData() throws FileNotFoundException {
-		File file = new File("src/main/resources/TestFraudalentData.csv");
+		File file = new File("data/TestFraudalentData.csv");
 		new CSVDataHelper().writeListToFile(Arrays.asList("testHashCreditCard"), file);
 		Scanner scan = new Scanner(file);
 		assertTrue(scan.hasNextLine());
@@ -43,7 +43,7 @@ public class CSVDataHelperTests {
 	
 	@Test
 	public void testInputFileData() throws NumberFormatException, FileNotFoundException, ParseException {
-		File file = new File("src/main/resources/TestTransactionData.csv");
+		File file = new File("data/TestTransactionData.csv");
 		PrintWriter printWriter = new PrintWriter(file);
 	    printWriter.println("10d7ce2f43e35fa57d1bbf8b1a3, 2014-04-30T13:15:54, 10.00");
 	    printWriter.close();
